@@ -252,6 +252,7 @@ mod redundant_field_names;
 mod redundant_pub_crate;
 mod redundant_slicing;
 mod redundant_static_lifetimes;
+mod redundant_type_annotation;
 mod ref_option_ref;
 mod reference;
 mod regex;
@@ -910,6 +911,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
     store.register_late_pass(|_| Box::new(permissions_set_readonly_false::PermissionsSetReadonlyFalse));
     store.register_late_pass(|_| Box::new(size_of_ref::SizeOfRef));
     store.register_late_pass(|_| Box::new(multiple_unsafe_ops_per_block::MultipleUnsafeOpsPerBlock));
+    store.register_early_pass(|| Box::new(redundant_type_annotation::RedundantTypeAnnotation));
     // add lints here, do not remove this comment, it's used in `new_lint`
 }
 

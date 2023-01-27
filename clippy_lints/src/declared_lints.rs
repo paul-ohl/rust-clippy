@@ -519,6 +519,7 @@ pub(crate) static LINTS: &[&crate::LintInfo] = &[
     crate::redundant_slicing::DEREF_BY_SLICING_INFO,
     crate::redundant_slicing::REDUNDANT_SLICING_INFO,
     crate::redundant_static_lifetimes::REDUNDANT_STATIC_LIFETIMES_INFO,
+    crate::redundant_type_annotation::REDUNDANT_TYPE_ANNOTATION_INFO,
     crate::ref_option_ref::REF_OPTION_REF_INFO,
     crate::reference::DEREF_ADDROF_INFO,
     crate::regex::INVALID_REGEX_INFO,
