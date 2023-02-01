@@ -135,6 +135,7 @@ impl<'tcx> LateLintPass<'tcx> for LenZero {
             if item.ident.name == sym::len;
             if let ImplItemKind::Fn(sig, _) = &item.kind;
             if sig.decl.implicit_self.has_implicit_self();
+            if sig.decl.inputs.len() == 1;
             if cx.effective_visibilities.is_exported(item.owner_id.def_id);
             if matches!(sig.decl.output, FnRetTy::Return(_));
             if let Some(imp) = get_parent_as_impl(cx.tcx, item.hir_id());
@@ -219,7 +220,7 @@ fn check_trait_items(cx: &LateContext<'_>, visited_trait: &Item<'_>, trait_items
         let is_empty = sym!(is_empty);
 
         let is_empty_method_found = current_and_super_traits
-            .iter()
+            .items()
             .flat_map(|&i| cx.tcx.associated_items(i).filter_by_name_unhygienic(is_empty))
             .any(|i| {
                 i.kind == ty::AssocKind::Fn
