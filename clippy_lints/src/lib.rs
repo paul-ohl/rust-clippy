@@ -911,7 +911,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
     store.register_late_pass(|_| Box::new(permissions_set_readonly_false::PermissionsSetReadonlyFalse));
     store.register_late_pass(|_| Box::new(size_of_ref::SizeOfRef));
     store.register_late_pass(|_| Box::new(multiple_unsafe_ops_per_block::MultipleUnsafeOpsPerBlock));
-    store.register_early_pass(|| Box::new(redundant_type_annotation::RedundantTypeAnnotation));
+    store.register_late_pass(|_| Box::new(redundant_type_annotation::RedundantTypeAnnotation));
     // add lints here, do not remove this comment, it's used in `new_lint`
 }
 

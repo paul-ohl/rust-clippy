@@ -18,4 +18,7 @@ fn main() {
 
     // Testing with an enum
     let b_enum: B = B::Variant1;
+
+    // This one should not raise a warning
+    let number: u32 = 5208;
 }
